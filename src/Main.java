@@ -1,4 +1,6 @@
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.security.KeyStore;
 import java.security.cert.X509Certificate;
 import java.util.Collections;
@@ -27,7 +29,7 @@ public class Main {
 
 	public static void main(String[] args) throws Exception, Exception {
 
-		String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><root></root>";
+		String xml = Files.readString(Path.of("//home//orangebox//eclipse-workspace//BarueriWSCLient//src//wssaopaulo//PedidoConsultaCNPJ.xml"));
 		
 		XMLSignatureFactory fac = XMLSignatureFactory.getInstance("DOM");
 		javax.xml.crypto.dsig.Reference ref = fac.newReference("", fac.newDigestMethod(DigestMethod.SHA1, null),
@@ -40,10 +42,10 @@ public class Main {
 				fac.newSignatureMethod(SignatureMethod.RSA_SHA1, null), Collections.singletonList(ref));
 		
 		// Load the KeyStore and get the signing key and certificate.
-		KeyStore ks = KeyStore.getInstance("JKS");
-		ks.load(new java.io.FileInputStream("C://TesteCert//40475821823_000001010394903.pfx"), "Julio65612556.".toCharArray());
-		KeyStore.PrivateKeyEntry keyEntry = (KeyStore.PrivateKeyEntry) ks.getEntry("CHAVE",
-				new KeyStore.PasswordProtection("SENHA_CHAVE".toCharArray()));
+		KeyStore ks = KeyStore.getInstance("");
+		ks.load(new java.io.FileInputStream("//home//orangebox//Downloads//julio.pfx"), "Julio65612556.".toCharArray());
+		KeyStore.PrivateKeyEntry keyEntry = (KeyStore.PrivateKeyEntry) ks.getEntry("BA8A233C-8C74-4D7E-B74D-35EC1F71C4C8",
+				new KeyStore.PasswordProtection("Julio65612556.".toCharArray()));
 		X509Certificate cert = (X509Certificate) keyEntry.getCertificate();
 		
 		// Create the KeyInfo containing the X509Data.
@@ -56,7 +58,7 @@ public class Main {
 		X509Data xd = kif.newX509Data(x509Content);
 		KeyInfo ki = kif.newKeyInfo(Collections.singletonList(xd));
 		
-		// Transformando String “xml” em Document.
+		// Transformando String ï¿½xmlï¿½ em Document.
 		
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		dbf.setNamespaceAware(true);

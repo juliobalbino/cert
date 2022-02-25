@@ -13,7 +13,7 @@ import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Logger;
+
 
 import javax.xml.crypto.MarshalException;
 import javax.xml.crypto.dsig.CanonicalizationMethod;
@@ -47,7 +47,7 @@ public class Main2 {
 
 	public static void main(String[] args) {
 
-		assinarXML("C:\\Users\\JulioDev\\Downloads\\teste.xml");
+		assinarXML("//home//orangebox//eclipse-workspace//BarueriWSCLient//src//wssaopaulo//PedidoConsultaNFePeriodo_v01.xml");
 	}
 
 	public static void assinarXML(String arquivoXML) {
@@ -57,16 +57,16 @@ public class Main2 {
 
 		try {
 			// CERTIFICADO DIGITAL EM ARQUIVO
-			tokenCaminho = "C://Users//JulioDev//Downloads//40475821823_000001010394903.pfx";
-			tokenNomeAmigavel = "key";
-			tokenSenha = "Julio65612556.";
+			tokenCaminho = "//home//orangebox//Downloads//WS_Barueri//arktec.pfx";
+			tokenNomeAmigavel = "ARK TEC GUARDA DE DOCUMENTOS SA65689895000169";
+			tokenSenha = "1234";
 
 			// CERTIFICADO DIGITAL EM SMARTCARD
 			// tokenCaminho = "";
 			// tokenNomeAmigavel = "";
 			// tokenSenha = "";
 
-			// CORRIGI BUG DO TRANSFORM
+			// CORRIGE BUG DO TRANSFORM
 			System.setProperty("javax.xml.transform.TransformerFactory",
 					"com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl");
 
@@ -124,11 +124,11 @@ public class Main2 {
 		} catch (NoSuchAlgorithmException | ParserConfigurationException | SAXException | KeyStoreException
 				| CertificateException | UnrecoverableEntryException | InvalidAlgorithmParameterException
 				| MarshalException | XMLSignatureException | TransformerConfigurationException e) {
-			Logger.getLogger(null);
+			e.printStackTrace();
 		} catch (FileNotFoundException ex) {
-			Logger.getLogger(null);
+			ex.printStackTrace();
 		} catch (IOException | TransformerException ex) {
-			Logger.getLogger(null);
+			ex.printStackTrace();
 		}
 	}
 }

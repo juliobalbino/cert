@@ -32,17 +32,17 @@ import javax.xml.transform.stream.StreamResult;
 public class Main3 {
 	
   public static void main(String[] args) throws Exception {
-   InputStream in = new FileInputStream(new File("C://TesteCert//xmlSemAssinatura.xml"));
-   OutputStream os = new FileOutputStream(new File("C://TesteCert//xmlAssinado.xml"));
+   InputStream in = new FileInputStream(new File("//home//orangebox//Downloads//teste.xml"));
+   OutputStream os = new FileOutputStream(new File("//home//orangebox//Downloads//testeAssinado.xml"));
 
   //elemento que deve ser assinado
   String tagName="pedidoDeCompra";
   String elementoID = "pedido12345";
 
   //chave(certificado)
-  String pathCertificado = "C://TesteCert//certificado.p7b";
+  String pathCertificado = "//home//orangebox//Downloads//40475821823_000001010394903.pfx";
   String senhaCertificado = "Julio65612556.";
-  String alias = "40475821823";
+  String alias = "BA8A233C-8C74-4D7E-B74D-35EC1F71C4C8";
   
   DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
   dbf.setNamespaceAware(true);
@@ -57,7 +57,7 @@ public class Main3 {
       throw new Exception("Alias existe?");
     }		
   } catch (IOException e) {
-     throw new Exception("Senha do Certificado Digital incorreta ou Certificado inválido.");
+     throw new Exception("Senha do Certificado Digital incorreta ou Certificado invï¿½lido.");
   }
   KeyStore.PrivateKeyEntry keyEntry = (KeyStore.PrivateKeyEntry) 
      ks.getEntry(alias, new KeyStore.PasswordProtection(senhaCertificado.toCharArray()));
@@ -95,7 +95,7 @@ public class Main3 {
   TransformerFactory tf = TransformerFactory.newInstance();
   Transformer trans = tf.newTransformer();
 
-   //salva resultado no arquivo de saída
+   //salva resultado no arquivo de saï¿½da
    trans.transform(new DOMSource(doc), new StreamResult(os));
 
   }
